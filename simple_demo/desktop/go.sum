@@ -3,6 +3,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-flutter-desktop/go-flutter v0.12.0 h1:NJ2m+lhOPnF1rfCsdVpiwFmLUOHy8b6NNSZz1lsSmCM=
 github.com/go-flutter-desktop/go-flutter v0.12.0/go.mod h1:+E+V03a0dHnxYRl5oDLj3CI0eL5rfXwYCW1CxzvFjkk=
+github.com/go-flutter-desktop/go-flutter v0.13.0 h1:ZZRKC0TAWZf0CSS8oPlldQfoKUdGEc1tq4JG19NXdH8=
+github.com/go-flutter-desktop/go-flutter v0.13.0/go.mod h1:+E+V03a0dHnxYRl5oDLj3CI0eL5rfXwYCW1CxzvFjkk=
 github.com/go-gl/glfw v0.0.0-20190217072633-93b30450e032 h1:WUDJN6o1AZlnNR0UZ11zsr0Quh44CV7svcg6VzEsySc=
 github.com/go-gl/glfw v0.0.0-20190217072633-93b30450e032/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
