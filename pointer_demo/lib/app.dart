@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Code Sample for widgets.Listener',
       theme: ThemeData(
+        // If the host is missing some fonts, it can cause the
+        // text to not be rendered or worse the app might crash.
+        fontFamily: 'Roboto',
         primarySwatch: Colors.blue,
       ),
       home: MyStatefulWidget(),
