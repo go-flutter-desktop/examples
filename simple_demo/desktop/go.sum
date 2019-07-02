@@ -1,6 +1,7 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/go-flutter-desktop/examples v0.0.0-20190702155139-69a6fb78e1fd h1:rmlVqcIDuQFnnyxfoMQwh17Uu9VzFBIvef5dfFbhyP0=
 github.com/go-flutter-desktop/go-flutter v0.12.0 h1:NJ2m+lhOPnF1rfCsdVpiwFmLUOHy8b6NNSZz1lsSmCM=
 github.com/go-flutter-desktop/go-flutter v0.12.0/go.mod h1:+E+V03a0dHnxYRl5oDLj3CI0eL5rfXwYCW1CxzvFjkk=
 github.com/go-flutter-desktop/go-flutter v0.13.0 h1:ZZRKC0TAWZf0CSS8oPlldQfoKUdGEc1tq4JG19NXdH8=
@@ -13,5 +14,6 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
+github.com/stretchr/objx v0.2.0/go.mod h1:qt09Ya8vawLte6SNmTgCsAVtYtaKzEcn8ATUoHMkEqE=
 github.com/stretchr/testify v1.3.0 h1:TivCn/peBQ7UY8ooIcPgZFpTNSz0Q2U6UrFlUfqbe0Q=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
