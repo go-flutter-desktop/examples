@@ -1,5 +1,6 @@
 name: stocks
 
+
 environment:
   # The pub client defaults to an <2.0.0 sdk constraint which we need to explicitly overwrite.
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
@@ -9,16 +10,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: 0.15.7
-  intl_translation: 0.17.0
-  http: 0.12.0
+  intl: 0.15.8
+  intl_translation: 0.17.5
+  http: 0.12.0+2
   isolate: 2.0.2
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_driver:
-    sdk: flutter
 
 flutter:
   uses-material-design: true
