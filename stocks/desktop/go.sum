@@ -2,9 +2,11 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-flutter-desktop/examples v0.0.0-20190702192013-5591ba0bb164 h1:6cMeiov24QU0NxNMieJBSlgCbt4S0lKx6LN429rbrhU=
+github.com/go-flutter-desktop/examples v0.0.0-20190703065642-5aac53f50631 h1:OKQlHeDxxaHcltWqjq6OhDM6X9VxSAMk3WndyJi7Jf0=
 github.com/go-flutter-desktop/go-flutter v0.22.0 h1:DzJ7XrH2IcRkeelz5r3bK2dFkJhGzRGygdd9WsLffY8=
 github.com/go-flutter-desktop/go-flutter v0.22.0/go.mod h1:GZYxHYp7lRnt3imJV1d8EWleMv5q9J4S2ONNEqpPOfo=
 github.com/go-flutter-desktop/go-flutter v0.23.0/go.mod h1:GZYxHYp7lRnt3imJV1d8EWleMv5q9J4S2ONNEqpPOfo=
+github.com/go-flutter-desktop/go-flutter v0.24.1/go.mod h1:GZYxHYp7lRnt3imJV1d8EWleMv5q9J4S2ONNEqpPOfo=
 github.com/go-gl/glfw v0.0.0-20190519095719-e6da0acd62b1 h1:noz9OnjV5PMOZWNOI+y1cS5rnxuJfpY6leIgQEEdBQw=
 github.com/go-gl/glfw v0.0.0-20190519095719-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
