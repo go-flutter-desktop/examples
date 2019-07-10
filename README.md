@@ -16,7 +16,7 @@ You'll need to have the following tools installed on your machine.
 
 ```bash
 git clone https://github.com/go-flutter-desktop/examples.git
-cd examples/[.....] # select a example project
+cd examples/[.....] # select an example project
 hover run
 ```
 
