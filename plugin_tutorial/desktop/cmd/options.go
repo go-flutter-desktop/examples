@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/go-flutter-desktop/go-flutter"
-	battery "github.com/go-flutter-desktop/plugins/go-plugin-example/battery"
+	"github.com/go-flutter-desktop/plugins/go-plugin-example/battery"
 	"github.com/go-flutter-desktop/plugins/go-plugin-example/complex_data_structure"
 )
 
