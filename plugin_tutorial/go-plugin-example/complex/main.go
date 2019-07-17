@@ -1,4 +1,4 @@
-package complex_data_structure
+package complex
 
 import (
 	"errors"
@@ -9,18 +9,38 @@ import (
 
 // Example demonstrates how to call a platform-specific API to retrieve
 // a complex data structure
-type Example struct{}
+type Example struct {
+	channel *plugin.MethodChannel
+}
 
 var _ flutter.Plugin = &Example{}
 
 // InitPlugin creates a MethodChannel and set a HandleFunc to the
 // shared 'getData' method.
-func (Example) InitPlugin(messenger plugin.BinaryMessenger) error {
+func (p *Example) InitPlugin(messenger plugin.BinaryMessenger) error {
 
-	channel := plugin.NewMethodChannel(messenger, "instance.id/go/data", plugin.StandardMethodCodec{})
-	channel.HandleFunc("getData", getRemotesFunc)
+	p.channel = plugin.NewMethodChannel(messenger, "instance.id/go/data", plugin.StandardMethodCodec{})
+	p.channel.HandleFunc("getData", getRemotesFunc)
+
+	// The order of PathPrefix is important!
+	p.channel.PathPrefix("test/").HandleFunc(p.pathPrefixTest) // "test/" will match before ""
+	p.channel.PathPrefix("").HandleFunc(matchAll)
 
 	return nil
+}
+
+func (p *Example) pathPrefixTest(methodCall interface{}) (reply interface{}, err error) {
+	method := methodCall.(plugin.MethodCall)
+
+	// // delete HandleFunc on "test/"
+	// next call to "test/" will use the MethodCall "matchAll"
+	p.channel.PathPrefix("test/").HandleFunc(nil)
+
+	return method.Method, nil
+}
+
+func matchAll(methodCall interface{}) (reply interface{}, err error) {
+	return "matchAll", nil
 }
 
 func getRemotesFunc(arguments interface{}) (reply interface{}, err error) {
