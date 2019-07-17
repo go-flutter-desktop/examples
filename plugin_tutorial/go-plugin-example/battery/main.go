@@ -1,4 +1,4 @@
-package go_plugin_example
+package battery
 
 import (
 	flutter "github.com/go-flutter-desktop/go-flutter"
