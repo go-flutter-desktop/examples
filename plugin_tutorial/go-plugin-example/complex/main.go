@@ -21,12 +21,12 @@ func (p *Example) InitPlugin(messenger plugin.BinaryMessenger) error {
 
 	p.channel = plugin.NewMethodChannel(messenger, "instance.id/go/data", plugin.StandardMethodCodec{})
 	p.channel.HandleFunc("getData", getRemotesFunc)
-	p.channel.CatchAllHandleFunc(p.pathPrefixTest)
+	p.channel.CatchAllHandleFunc(p.catchAllTest)
 
 	return nil
 }
 
-func (p *Example) pathPrefixTest(methodCall interface{}) (reply interface{}, err error) {
+func (p *Example) catchAllTest(methodCall interface{}) (reply interface{}, err error) {
 	method := methodCall.(plugin.MethodCall)
 	// return the randomized Method Name
 	return method.Method, nil
