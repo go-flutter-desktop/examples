@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'dart:math';
 
 // The client and host sides of a channel are connected through
 // a channel name passed in the channel constructor.
@@ -20,7 +21,7 @@ void main() async {
     print(batteryLevel);
   });
 
-  // answering https://github.com/go-flutter-desktop/go-flutter/issues/194
+  // A more complicated plugin
   //
   test('Test StandardMethodCodec array of map', () async {
     const platform_complex_structure =
@@ -34,6 +35,12 @@ void main() async {
       {"instanceid": 1056, "pcbackup": "coucou", "brbackup": "coucou2"},
       {"instanceid": 3322, "pcbackup": "finaly", "brbackup": "finaly2"}
     ]);
+
+    // golang can return the random methodName
+    final String methodName = 'test/' + new Random().nextInt(100000).toString();
+    final String resultPathPrefix =
+        await platform_complex_structure.invokeMethod(methodName);
+    expect(resultPathPrefix, methodName);
   });
 
   tearDownAll(() async {
