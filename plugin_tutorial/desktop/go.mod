@@ -13,5 +13,3 @@ require (
 replace github.com/go-flutter-desktop/plugins/go-plugin-example/battery => ../go-plugin-example/battery
 
 replace github.com/go-flutter-desktop/plugins/go-plugin-example/complex => ../go-plugin-example/complex
-
-replace github.com/go-flutter-desktop/go-flutter => /home/drakirus/lab/go/src/github.com/go-flutter-desktop/go-flutter

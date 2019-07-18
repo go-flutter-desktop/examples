@@ -21,26 +21,15 @@ func (p *Example) InitPlugin(messenger plugin.BinaryMessenger) error {
 
 	p.channel = plugin.NewMethodChannel(messenger, "instance.id/go/data", plugin.StandardMethodCodec{})
 	p.channel.HandleFunc("getData", getRemotesFunc)
-
-	// The order of PathPrefix is important!
-	p.channel.PathPrefix("test/").HandleFunc(p.pathPrefixTest) // "test/" will match before ""
-	p.channel.PathPrefix("").HandleFunc(matchAll)
+	p.channel.CatchAllHandleFunc(p.pathPrefixTest)
 
 	return nil
 }
 
 func (p *Example) pathPrefixTest(methodCall interface{}) (reply interface{}, err error) {
 	method := methodCall.(plugin.MethodCall)
-
-	// // delete HandleFunc on "test/"
-	// next call to "test/" will use the MethodCall "matchAll"
-	p.channel.PathPrefix("test/").HandleFunc(nil)
-
+	// return the randomized Method Name
 	return method.Method, nil
-}
-
-func matchAll(methodCall interface{}) (reply interface{}, err error) {
-	return "matchAll", nil
 }
 
 func getRemotesFunc(arguments interface{}) (reply interface{}, err error) {

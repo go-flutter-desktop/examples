@@ -36,25 +36,11 @@ void main() async {
       {"instanceid": 3322, "pcbackup": "finaly", "brbackup": "finaly2"}
     ]);
 
-    // invokeMethod on a wildcard MethodHandler
-    final String matchAll = new Random().nextInt(100000).toString();
-    final String resultPathPrefixMatchall =
-        await platform_complex_structure.invokeMethod(matchAll);
-    expect(resultPathPrefixMatchall, "matchAll");
-
-    // The golang `channel.PathPrefix("test/")` was added BEFORE the wildcard
-    // handler, no conflict should occur with `channel.PathPrefix("")`
-    //
-    // The golang MethodHandler "test/" will delete itself.
+    // golang can return the random methodName
     final String methodName = 'test/' + new Random().nextInt(100000).toString();
     final String resultPathPrefix =
         await platform_complex_structure.invokeMethod(methodName);
     expect(resultPathPrefix, methodName);
-
-    // Another call on "test/" should use the wildcard MethodHandler
-    final String resultPathPrefix2 =
-        await platform_complex_structure.invokeMethod(methodName);
-    expect(resultPathPrefix2, "matchAll");
   });
 
   tearDownAll(() async {
