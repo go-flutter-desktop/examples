@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/go-flutter-desktop/go-flutter"
-	controller "github.com/go-flutter-esktop/plugins/xbox"
+	controller "github.com/go-flutter-desktop/plugins/xbox"
 )
 
 var options = []flutter.Option{
