@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints.tight(Size(330, 319)),
-            child: Texture(textureId: 1),
+            child: Texture(textureId: 1), // hard-coded to 1!
           ),
         ),
       ),

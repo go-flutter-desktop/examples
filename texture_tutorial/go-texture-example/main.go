@@ -26,20 +26,20 @@ func (p *MyTexturePlugin) InitPluginTexture(registry *flutter.TextureRegistry) e
 
 	texture := registry.NewTexture()
 
-	// for this exmaple I hardcoded a `textureId: 1` for the flutter Texture widget.
+	// for this exmaple I hard-coded a `textureId: 1` int the flutter Texture widget.
 	texture.ID = 1
-
-	// `registry.NewTexture()` will keep track of the textureId counter.
+	// You should never change this ID, `registry.NewTexture()` will keep track
+	// of the textureId counter for you.
 	// You should send the texture.ID number to dart using some sort of platform
-	// channel. Don't handle the texture.ID by yourself!!, it's an example.
+	// channel, you should use the go generated textureId in flutter.
 
-	// after 20 seconds, remove the texture from the scene.
+	// after 5 seconds, remove the texture from the scene.
 	go func() {
-		time.Sleep(20 * time.Second)
-		fmt.Printf("UnRegistering texture %v\n", texture.ID)
+		time.Sleep(5 * time.Second)
+		fmt.Printf("texture_tutorial: UnRegistering texture %v\n", texture.ID)
 		err := texture.UnRegister()
 		if err != nil {
-			fmt.Printf("example.MyTexturePlugin: %v", err)
+			fmt.Printf("texture_tutorial: %v", err)
 		}
 		texture.FrameAvailable() // repaint now!
 	}()
@@ -49,7 +49,7 @@ func (p *MyTexturePlugin) InitPluginTexture(registry *flutter.TextureRegistry) e
 
 func (p *MyTexturePlugin) textureHanler(width, height int) (bool, *flutter.PixelBuffer) {
 
-	// hard coded the app with hover run
+	// hard-coded path, run the app with `hover run`
 	file := "./test.png"
 	imgFile, err := os.Open(file)
 	if err != nil {
