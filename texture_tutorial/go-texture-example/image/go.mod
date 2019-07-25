@@ -1,4 +1,4 @@
-module github.com/go-flutter-desktop/plugins/go-texture-example/example
+module github.com/go-flutter-desktop/plugins/go-texture-example/example_image
 
 go 1.12
 

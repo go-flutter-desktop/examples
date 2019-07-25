@@ -1,4 +1,4 @@
-package example
+package example_image
 
 import (
 	"fmt"
@@ -11,18 +11,18 @@ import (
 	"github.com/go-flutter-desktop/go-flutter/plugin"
 )
 
-// MyTexturePlugin is a texture plugin example
-type MyTexturePlugin struct{}
+// ImagePlugin is a texture plugin example
+type ImagePlugin struct{}
 
-var _ flutter.PluginTexture = &MyTexturePlugin{} // compile-time type check
+var _ flutter.PluginTexture = &ImagePlugin{} // compile-time type check
 
 // InitPlugin is used because PluginTexture must implement flutter.Plugin
-func (p *MyTexturePlugin) InitPlugin(messenger plugin.BinaryMessenger) error {
+func (p *ImagePlugin) InitPlugin(messenger plugin.BinaryMessenger) error {
 	return nil
 }
 
 // InitPluginTexture is used to create and manage backend textures
-func (p *MyTexturePlugin) InitPluginTexture(registry *flutter.TextureRegistry) error {
+func (p *ImagePlugin) InitPluginTexture(registry *flutter.TextureRegistry) error {
 
 	texture := registry.NewTexture()
 
@@ -36,34 +36,34 @@ func (p *MyTexturePlugin) InitPluginTexture(registry *flutter.TextureRegistry) e
 	// after 5 seconds, remove the texture from the scene.
 	go func() {
 		time.Sleep(5 * time.Second)
-		fmt.Printf("texture_tutorial: UnRegistering texture %v\n", texture.ID)
+		fmt.Printf("texture_tutorial: UnRegistering texture %v after 5 seconds\n", texture.ID)
 		err := texture.UnRegister()
 		if err != nil {
-			fmt.Printf("texture_tutorial: %v", err)
+			fmt.Printf("texture_tutorial: %v\n", err)
 		}
-		texture.FrameAvailable() // repaint now!
+		texture.FrameAvailable() // repaint to clear scene
 	}()
 
 	return texture.Register(p.textureHanler)
 }
 
-func (p *MyTexturePlugin) textureHanler(width, height int) (bool, *flutter.PixelBuffer) {
+func (p *ImagePlugin) textureHanler(width, height int) (bool, *flutter.PixelBuffer) {
 
-	// hard-coded path, run the app with `hover run`
+	// hard-coded path, run the app with `hover run` in the project root
 	file := "./test.png"
 	imgFile, err := os.Open(file)
 	if err != nil {
-		fmt.Printf("texture %q not found on disk: %v", file, err)
+		fmt.Printf("texture %q not found on disk: %v\n", file, err)
 	}
 
 	img, _, err := image.Decode(imgFile)
 	if err != nil {
-		fmt.Printf("error decoding file %s:%v", file, err)
+		fmt.Printf("error decoding file %s:%v\n", file, err)
 	}
 
 	rgba := image.NewRGBA(img.Bounds())
 	if rgba.Stride != rgba.Rect.Size().X*4 {
-		fmt.Printf("unsupported stride")
+		fmt.Printf("unsupported stride\n")
 	}
 
 	draw.Draw(rgba, rgba.Bounds(), img, image.Point{0, 0}, draw.Src)

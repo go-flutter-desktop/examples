@@ -21,12 +21,38 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Texture Example'),
+          title: Text('Texture Examples'),
         ),
         body: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints.tight(Size(330, 319)),
-            child: Texture(textureId: 1), // hard-coded to 1!
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Spacer(flex: 2),
+                  Text('Video Player'),
+                  Spacer(flex: 1),
+                  ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(640, 360)),
+                    child:
+                        Texture(textureId: 2), // hard-coded to 2, videoplayer
+                  ),
+                  Spacer(flex: 2),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  Spacer(flex: 2),
+                  Text('Image Texture'),
+                  Spacer(flex: 1),
+                  ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(330, 319)),
+                    child: Texture(textureId: 1), // hard-coded to 1, image
+                  ),
+                  Spacer(flex: 2),
+                ],
+              ),
+            ],
           ),
         ),
       ),
