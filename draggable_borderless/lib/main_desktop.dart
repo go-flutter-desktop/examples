@@ -1,6 +1,3 @@
-// This example makes a [Container] react to being entered by a mouse
-// pointer, showing a count of the number of entries and exits.
-
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
