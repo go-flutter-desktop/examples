@@ -5,4 +5,10 @@ A project demonstrating:
 
 The demo uses the game engine [flame](https://github.com/flame-engine/flame).
 
-![demo_gif](./xbox_controller.gif)
+## Demo
+<p align="center">
+  <img src="./xbox_controller.gif" width="650" align="center" alt="Demo of the
+  example">
+</p>
+
+
