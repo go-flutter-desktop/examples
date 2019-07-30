@@ -3,7 +3,6 @@ package example_video
 import (
 	"flag"
 	"fmt"
-	"sync"
 	"time"
 
 	flutter "github.com/go-flutter-desktop/go-flutter"
@@ -11,6 +10,9 @@ import (
 )
 
 // VideoPlugin is a texture plugin example
+// Every frame of the video is extracted and send to flutter through the
+// texture API. The process of extracting every frame is intensive, 4k video
+// and high frame-rate video is sluggish.
 type VideoPlugin struct {
 	videoBuffer *ffmpegVideo
 }
@@ -37,26 +39,20 @@ func (p *VideoPlugin) InitPluginTexture(registry *flutter.TextureRegistry) error
 	texture := registry.NewTexture()
 	texture.ID = 2 // not a good practice, use platform message to align dart and golang textureId
 
-	consumer := func(wg *sync.WaitGroup) { // start marking frame available
+	consumer := func() {
 		imagePerSec := p.videoBuffer.GetFrameRate()
-		start := time.Now()
 
-		// TODO(drakirus): when the p.videoBuffer.Frames is empty, it doesn't
-		// necessary means that the video is over, a frame might take time to be
-		// encoded.
-		// Step to reproduce: set a bufferSize to 1.
-		for len(p.videoBuffer.Frames) != 0 {
+		for p.videoBuffer.HasFrameAvailable() {
 			time.Sleep(time.Duration(imagePerSec*1000) * time.Millisecond)
 			texture.FrameAvailable() // trigger p.textureHanler (display new frame)
 		}
-
-		fmt.Printf("texture_tutorial: video play time: %v, real time %vs\n", time.Since(start), p.videoBuffer.Duration())
-		wg.Done()
 	}
 
 	go func() {
 		fmt.Println("texture_tutorial: Start video")
-		p.videoBuffer.Play(consumer) // on frame pending frames start consumer
+		start := time.Now()
+		p.videoBuffer.Stream(consumer) // on pending frames, start consuming image in the channel
+		fmt.Printf("texture_tutorial: video play time: %v, real time %vs\n", time.Since(start), p.videoBuffer.Duration())
 		texture.UnRegister()
 		texture.FrameAvailable() // repaint to clear scene
 		p.videoBuffer.Free()
@@ -67,22 +63,28 @@ func (p *VideoPlugin) InitPluginTexture(registry *flutter.TextureRegistry) error
 }
 
 // textureHanler is triggerd when texture.FrameAvailable is called
+//
 // TODO: scale the video down if the with and height of the flutter Widget is
 // lower than the with and height of the video.
-// This down-scaling will reduce memory usage.
-// How to down-scale with golang gmf: https://github.com/3d0c/gmf/blob/22de4b5a3c28895fe1b0b787ab36d0b49e53375f/examples/scale_video.go#L36-L43
+// This down-scaling will reduce memory usage. (change the `SetWidth` and
+// `SetHeight` of gmf.CodecCtx)
+//
+// TODO: textureHanler can be called from 2 sources: texture.FrameAvailable and
+// flutter redraw (resize/move window).
+// when called by redraw, multiples new frames gets draw without proper timing,
+// leading to wrong frame rate. The video is accelerated.
 func (p *VideoPlugin) textureHanler(width, height int) (bool, *flutter.PixelBuffer) {
 
 	vWidth, vHeight := p.videoBuffer.Bounds()
 
-	// TODO(drakirus): Check if the video is over.
-	// the rendering loop can be blocked if the video is over (no frame in
-	// p.videoBuffer.Frames) and a texture.FrameAvailable is trigged by the
-	// engine (when moving/resizing the window)
-	pixels := <-p.videoBuffer.Frames // get the frame
+	if p.videoBuffer.Closed() {
+		return false, nil
+	}
+
+	pixels := <-p.videoBuffer.Frames // get the frame, ! Block the main thread !
 	defer pixels.Free()
 
-	return true, &flutter.PixelBuffer{ // send it to the scene
+	return true, &flutter.PixelBuffer{ // send the image to the scene
 		Pix:    pixels.Data(),
 		Width:  vWidth,
 		Height: vHeight,

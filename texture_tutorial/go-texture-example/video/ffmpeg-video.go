@@ -2,9 +2,11 @@ package example_video
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"sync"
+	"sync/atomic"
 
 	"github.com/3d0c/gmf"
 )
@@ -16,9 +18,19 @@ type ffmpegVideo struct {
 	inputCtx       *gmf.FmtCtx
 	srcVideoStream *gmf.Stream
 	Frames         chan *gmf.Packet
+	player         *playerStatus
 }
 
+type playerStatus struct{ flag int32 }
+
+const (
+	allImagesProcessed = 2
+	playing            = 1
+	noImagesAvailable  = 0
+)
+
 func (f *ffmpegVideo) Init(srcFileName string, bufferSize int) (err error) {
+	f.player = new(playerStatus)
 	f.inputCtx, err = gmf.NewInputCtx(srcFileName)
 	f.Frames = make(chan *gmf.Packet, bufferSize)
 	if err != nil {
@@ -37,9 +49,12 @@ func (f *ffmpegVideo) Init(srcFileName string, bufferSize int) (err error) {
 
 	f.cc = gmf.NewCodecCtx(codec)
 
-	f.cc.SetTimeBase(gmf.AVR{Num: 1, Den: 1})
+	f.cc.
+		SetTimeBase(gmf.AVR{Num: 1, Den: 1}).
+		SetPixFmt(gmf.AV_PIX_FMT_RGBA).
+		SetWidth(f.srcVideoStream.CodecCtx().Width()).
+		SetHeight(f.srcVideoStream.CodecCtx().Height())
 
-	f.cc.SetPixFmt(gmf.AV_PIX_FMT_RGBA).SetWidth(f.srcVideoStream.CodecCtx().Width()).SetHeight(f.srcVideoStream.CodecCtx().Height())
 	if codec.IsExperimental() {
 		f.cc.SetStrictCompliance(gmf.FF_COMPLIANCE_EXPERIMENTAL)
 	}
@@ -71,10 +86,20 @@ func (f *ffmpegVideo) Free() {
 	f.cc.Free()
 }
 
-func (f *ffmpegVideo) Play(onFirstFrame func(wg *sync.WaitGroup)) {
+func (f *ffmpegVideo) Stream(onFirstFrame func()) {
 	drain := -1
 	hasConsumer := false
 	var wg sync.WaitGroup
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("texture_tutorial: recover: ", r)
+			for len(f.Frames) > 0 { // clean the frame channel
+				<-f.Frames
+			}
+			f.Cancel()
+		}
+	}()
 
 	for {
 		if drain >= 0 {
@@ -120,11 +145,16 @@ func (f *ffmpegVideo) Play(onFirstFrame func(wg *sync.WaitGroup)) {
 		if len(packets) == 0 {
 			break
 		}
+
 		for _, p := range packets {
 			f.Frames <- p
+			f.Play()
 			if !hasConsumer {
 				wg.Add(1)
-				go onFirstFrame(&wg)
+				go func() {
+					onFirstFrame()
+					wg.Done()
+				}()
 				hasConsumer = true
 			}
 		}
@@ -138,11 +168,13 @@ func (f *ffmpegVideo) Play(onFirstFrame func(wg *sync.WaitGroup)) {
 			pkt = nil
 		}
 	}
+	f.EndOfVideo()
 	for i := 0; i < f.inputCtx.StreamsCnt(); i++ {
 		st, _ := f.inputCtx.GetStream(i)
-		st.CodecCtx().Free()
-		st.Free()
+		defer st.CodecCtx().Free()
+		defer st.Free()
 	}
+
 	wg.Wait()
 }
 
@@ -157,4 +189,37 @@ func (f *ffmpegVideo) GetFrameRate() float64 {
 
 func (f *ffmpegVideo) Duration() float64 {
 	return f.inputCtx.Duration()
+}
+
+func (f *ffmpegVideo) EndOfVideo() {
+	f.Set(allImagesProcessed)
+}
+
+func (f *ffmpegVideo) Play() {
+	f.Set(playing)
+}
+
+func (f *ffmpegVideo) Cancel() {
+	f.Set(noImagesAvailable)
+}
+
+func (f *ffmpegVideo) Set(value int32) {
+	atomic.StoreInt32(&(f.player.flag), value)
+}
+
+func (f *ffmpegVideo) Closed() bool {
+	flag := atomic.LoadInt32(&(f.player.flag))
+	if flag == allImagesProcessed && len(f.Frames) <= 1 {
+		defer f.Set(noImagesAvailable)
+	}
+	return flag != playing && len(f.Frames) == 0
+}
+
+func (f *ffmpegVideo) HasFrameAvailable() bool {
+	flag := atomic.LoadInt32(&(f.player.flag))
+
+	if flag == allImagesProcessed || flag == playing {
+		return true
+	}
+	return false
 }
