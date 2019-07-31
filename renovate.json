@@ -1,7 +1,9 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base", "docker:disable", ":skipStatusChecks"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
   "ignorePaths": [
     "*/android/**"
   ]
