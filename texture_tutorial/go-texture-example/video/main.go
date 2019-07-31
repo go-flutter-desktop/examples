@@ -6,6 +6,7 @@ import (
 
 	flutter "github.com/go-flutter-desktop/go-flutter"
 	"github.com/go-flutter-desktop/go-flutter/plugin"
+	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
 // VideoPlugin is a texture plugin example
@@ -21,6 +22,7 @@ type VideoPlugin struct {
 	// leading to wrong frame rate. The video is accelerated.
 	// This channel is used to keep ensure the timing is correct between goroutine.
 	newFrame chan bool
+	window   *glfw.Window
 }
 
 var _ flutter.PluginTexture = &VideoPlugin{} // compile-time type check
@@ -37,6 +39,12 @@ func (p *VideoPlugin) InitPlugin(messenger plugin.BinaryMessenger) (err error) {
 	return p.videoBuffer.Init("./SampleVideo_1280x720_10mb.mp4", bufferSize)
 	// URL video also works!
 	// return p.videoBuffer.Init("http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4", bufferSize)
+}
+
+// InitPluginGLFW is used to gain control over the glfw.Window
+func (p *VideoPlugin) InitPluginGLFW(window *glfw.Window) error {
+	p.window = window
+	return nil
 }
 
 // InitPluginTexture is used to create and manage backend textures
@@ -79,7 +87,7 @@ func (p *VideoPlugin) textureHanler(width, height int) (bool, *flutter.PixelBuff
 
 	vWidth, vHeight := p.videoBuffer.Bounds()
 
-	if p.videoBuffer.Closed() {
+	if p.videoBuffer.Closed() || p.window.ShouldClose() {
 		return false, nil
 	}
 
