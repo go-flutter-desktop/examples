@@ -1,7 +1,6 @@
 package example_video
 
 import (
-	"flag"
 	"fmt"
 	"time"
 
@@ -22,15 +21,12 @@ var _ flutter.PluginTexture = &VideoPlugin{} // compile-time type check
 // InitPlugin is used because PluginTexture must implement flutter.Plugin
 func (p *VideoPlugin) InitPlugin(messenger plugin.BinaryMessenger) (err error) {
 
-	var srcFileName string
-	// hard-coded path, run the app with `hover run` in the project root
-	flag.StringVar(&srcFileName, "src", "SampleVideo_1280x720_10mb.mp4", "source video")
-	flag.Parse()
-
 	p.videoBuffer = &ffmpegVideo{}
 
 	bufferSize := 30 // in frames
-	return p.videoBuffer.Init(srcFileName, bufferSize)
+
+	// hard-coded path, run the app with `hover run` in the project root
+	return p.videoBuffer.Init("./SampleVideo_1280x720_10mb.mp4", bufferSize)
 }
 
 // InitPluginTexture is used to create and manage backend textures

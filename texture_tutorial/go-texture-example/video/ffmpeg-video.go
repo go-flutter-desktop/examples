@@ -2,6 +2,7 @@ package example_video
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -29,8 +30,14 @@ const (
 	noImagesAvailable  = 0
 )
 
-func (f *ffmpegVideo) Init(srcFileName string, bufferSize int) (err error) {
+func (f *ffmpegVideo) Init(videoSource string, bufferSize int) (err error) {
 	f.player = new(playerStatus)
+
+	var srcFileName string
+	// hard-coded path, run the app with `hover run` in the project root
+	flag.StringVar(&srcFileName, "src", videoSource, "source video")
+	flag.Parse()
+
 	f.inputCtx, err = gmf.NewInputCtx(srcFileName)
 	f.Frames = make(chan *gmf.Packet, bufferSize)
 	if err != nil {
