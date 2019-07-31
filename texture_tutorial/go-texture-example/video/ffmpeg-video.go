@@ -86,6 +86,7 @@ func (f *ffmpegVideo) Init(videoSource string, bufferSize int) (err error) {
 }
 
 func (f *ffmpegVideo) Free() {
+	close(f.Frames)
 	f.swsctx.Free()
 	f.ist.Free()
 	f.inputCtx.Free()
