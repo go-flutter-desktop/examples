@@ -21,7 +21,6 @@ func (p *Example) InitPlugin(messenger plugin.BinaryMessenger) error {
 
 	p.channel = plugin.NewMethodChannel(messenger, "instance.id/go/data", plugin.StandardMethodCodec{})
 	p.channel.HandleFunc("getData", getRemotesFunc)
-	p.channel.HandleFunc("getError", getErrorFunc)
 	p.channel.CatchAllHandleFunc(p.catchAllTest)
 
 	return nil
@@ -64,8 +63,4 @@ func getRemotesFunc(arguments interface{}) (reply interface{}, err error) {
 	}
 
 	return sectionList, nil
-}
-
-func getErrorFunc(arguments interface{}) (reply interface{}, err error) {
-	return nil, plugin.NewError("customErrorCode", errors.New("Some error"))
 }
