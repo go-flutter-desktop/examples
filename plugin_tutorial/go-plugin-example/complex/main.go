@@ -67,5 +67,5 @@ func getRemotesFunc(arguments interface{}) (reply interface{}, err error) {
 }
 
 func getErrorFunc(arguments interface{}) (reply interface{}, err error) {
-	return nil, plugin.NewPluginError("customErrorCode", errors.New("Some error"))
+	return nil, plugin.NewError("customErrorCode", errors.New("Some error"))
 }
