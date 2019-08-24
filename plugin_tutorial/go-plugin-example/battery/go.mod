@@ -2,4 +2,4 @@ module github.com/go-flutter-desktop/plugins/go-plugin-example/battery
 
 go 1.12
 
-require github.com/go-flutter-desktop/go-flutter v0.27.4
+require github.com/go-flutter-desktop/go-flutter v0.28.0
