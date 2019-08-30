@@ -12,7 +12,8 @@
   "ignoreDeps": [
     "golang.org/x/crypto",
     "golang.org/x/net",
-    "golang.org/x/sys"
+    "golang.org/x/sys",
+    "intl"
   ],
   "ignorePaths": [
     "*/android/**"
