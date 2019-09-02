@@ -21,26 +21,38 @@ void main() async {
     print(batteryLevel);
   });
 
-  // A more complicated plugin
-  //
-  test('Test StandardMethodCodec array of map', () async {
+  group('Complex plugin', () {
     const platform_complex_structure =
         const MethodChannel('instance.id/go/data');
 
-    final List<dynamic> result = await platform_complex_structure.invokeMethod(
-        'getData', "HelloFromDart"); // passing "HelloFromDart" as an argument
-    expect(result, [
-      {"instanceid": 1023, "pcbackup": "test", "brbackup": "test2"},
-      {"instanceid": 1024, "pcbackup": "test", "brbackup": "test2"},
-      {"instanceid": 1056, "pcbackup": "coucou", "brbackup": "coucou2"},
-      {"instanceid": 3322, "pcbackup": "finaly", "brbackup": "finaly2"}
-    ]);
+    // A more complicated plugin
+    test('Test StandardMethodCodec array of map', () async {
+      final List<dynamic> result =
+          await platform_complex_structure.invokeMethod('getData',
+              "HelloFromDart"); // passing "HelloFromDart" as an argument
+      expect(result, [
+        {"instanceid": 1023, "pcbackup": "test", "brbackup": "test2"},
+        {"instanceid": 1024, "pcbackup": "test", "brbackup": "test2"},
+        {"instanceid": 1056, "pcbackup": "coucou", "brbackup": "coucou2"},
+        {"instanceid": 3322, "pcbackup": "finaly", "brbackup": "finaly2"}
+      ]);
 
-    // golang can return the random methodName
-    final String methodName = 'test/' + new Random().nextInt(100000).toString();
-    final String resultPathPrefix =
-        await platform_complex_structure.invokeMethod(methodName);
-    expect(resultPathPrefix, methodName);
+      // golang can return the random methodName
+      final String methodName =
+          'test/' + new Random().nextInt(100000).toString();
+      final String resultPathPrefix =
+          await platform_complex_structure.invokeMethod(methodName);
+      expect(resultPathPrefix, methodName);
+    });
+
+    test('Custom errors', () async {
+      var matcher = predicate(
+          (e) => e is PlatformException && e.code == "customErrorCode");
+      expect(
+        platform_complex_structure.invokeMethod('getError'),
+        throwsA(matcher),
+      );
+    });
   });
 
   tearDownAll(() async {
