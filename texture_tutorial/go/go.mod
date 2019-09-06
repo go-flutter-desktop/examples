@@ -3,7 +3,7 @@ module github.com/go-flutter-desktop/examples/plugin_tutorial/desktop
 go 1.12
 
 require (
-	github.com/go-flutter-desktop/go-flutter v0.29.0
+	github.com/go-flutter-desktop/go-flutter v0.29.2
 	github.com/go-flutter-desktop/plugins/go-texture-example/example_image v0.0.1
 	github.com/go-flutter-desktop/plugins/go-texture-example/example_video v0.0.1
 	github.com/pkg/errors v0.8.1
