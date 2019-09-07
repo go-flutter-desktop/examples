@@ -14,9 +14,10 @@ Bindings), please follow the Installation described in the gmf project README.
 </p>
 
 ## :warning: Warning! :warning:
-This plugin showcase can crash due to FFmpeg bindings errors.  
-Before reporting an issue, edit the
-[go/cmd/options.go](https://github.com/go-flutter-desktop/examples/blob/master/texture_tutorial/go/cmd/options.go) file and remove the `example_video.VideoPlugin` plugin.
+This plugin showcase can crash due to FFmpeg bindings errors (gmf).  
+**For that reason, the video plugin in this example is off by default**  
+If you want to give the video plugin example a shot, edit the
+[go/cmd/options.go](https://github.com/go-flutter-desktop/examples/blob/master/texture_tutorial/go/cmd/options.go) file and add the `example_video.VideoPlugin` plugin.
 
 ```go
 package main
@@ -24,14 +25,15 @@ package main
 import (
 	"github.com/go-flutter-desktop/go-flutter"
 	"github.com/go-flutter-desktop/plugins/go-texture-example/example_image"
+	"github.com/go-flutter-desktop/plugins/go-texture-example/example_video"
 )
 
 var options = []flutter.Option{
 	flutter.WindowInitialDimensions(1200, 500),
-	// flutter.AddPlugin(&example_video.VideoPlugin{}),
+	flutter.AddPlugin(&example_video.VideoPlugin{}),
 	flutter.AddPlugin(&example_image.ImagePlugin{}),
 }
 ```
 
 If you get errors when only using the `example_image.ImagePlugin` plugin, please report an issue!  
-Otherwise check if your system is compatible with the [video-to-goImage](https://github.com/3d0c/gmf/blob/f4b5acb7db5cbbda9a6209be1d0de5f552823f62/examples/video-to-goImage.go) gmf example.
+If you get errors when using both plugin, check if your system is compatible with the [video-to-goImage](https://github.com/3d0c/gmf/blob/f4b5acb7db5cbbda9a6209be1d0de5f552823f62/examples/video-to-goImage.go) gmf example.
