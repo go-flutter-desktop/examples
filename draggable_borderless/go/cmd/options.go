@@ -16,6 +16,8 @@ var options = []flutter.Option{
 type AppBarDraggable struct {
 	window           *glfw.Window
 	windowDragActive chan bool
+	cursorPosY       int
+	cursorPosX       int
 }
 
 var _ flutter.Plugin = &AppBarDraggable{}     // compile-time type check
@@ -27,7 +29,8 @@ func (p *AppBarDraggable) InitPlugin(messenger plugin.BinaryMessenger) error {
 	p.windowDragActive = make(chan bool)
 	channel := plugin.NewMethodChannel(messenger, "samples.go-flutter.dev/draggable", plugin.StandardMethodCodec{})
 	channel.HandleFunc("onPanStart", p.onPanStart)
-	channel.HandleFunc("onPanEnd", p.onPanEnd)
+	channel.HandleFuncSync("onPanUpdate", p.onPanUpdate) // MUST RUN ON THE MAIN THREAD (use of HandleFuncSync)
+	channel.HandleFunc("onClose", p.onClose)
 	return nil
 }
 
@@ -37,31 +40,31 @@ func (p *AppBarDraggable) InitPluginGLFW(window *glfw.Window) error {
 	return nil
 }
 
-// onPanStart a golang / flutter implemantation of:
+// onPanStart/onPanUpdate a golang / flutter implemantation of:
 // "GLFW how to drag undecorated window without lag"
 // https://stackoverflow.com/a/46205940
 func (p *AppBarDraggable) onPanStart(arguments interface{}) (reply interface{}, err error) {
 	argumentsMap := arguments.(map[interface{}]interface{})
-	cursorPosX := int(argumentsMap["dx"].(float64))
-	cursorPosY := int(argumentsMap["dy"].(float64))
-	for {
-		select {
-		case <-p.windowDragActive:
-			return
-		default:
-			xpos, ypos := p.window.GetCursorPos()
-			deltaX := int(xpos) - cursorPosX
-			deltaY := int(ypos) - cursorPosY
-
-			x, y := p.window.GetPos()
-			p.window.SetPos(x+deltaX, y+deltaY)
-		}
-
-	}
+	p.cursorPosX = int(argumentsMap["dx"].(float64))
+	p.cursorPosY = int(argumentsMap["dy"].(float64))
 	return nil, nil
 }
 
-func (p *AppBarDraggable) onPanEnd(arguments interface{}) (reply interface{}, err error) {
-	p.windowDragActive <- false
+// onPanUpdate calls GLFW functions that aren't thread safe.
+// to run function on the main go-flutter thread, use HandleFuncSync instead of HandleFunc!
+func (p *AppBarDraggable) onPanUpdate(arguments interface{}) (reply interface{}, err error) {
+	xpos, ypos := p.window.GetCursorPos() // This function must only be called from the main thread.
+	deltaX := int(xpos) - p.cursorPosX
+	deltaY := int(ypos) - p.cursorPosY
+
+	x, y := p.window.GetPos()           // This function must only be called from the main thread.
+	p.window.SetPos(x+deltaX, y+deltaY) // This function must only be called from the main thread.
+
+	return nil, nil
+}
+
+func (p *AppBarDraggable) onClose(arguments interface{}) (reply interface{}, err error) {
+	// This function may be called from any thread. Access is not synchronized.
+	p.window.SetShouldClose(true)
 	return nil, nil
 }

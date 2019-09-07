@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Code Sample for widgets.Listener',
       theme: ThemeData(
         // If the host is missing some fonts, it can cause the
@@ -22,11 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: DraggebleAppBar(
-          appBar: AppBar(
-            title: Text("Draggable borderless"),
-          ),
-        ),
+        appBar: DraggebleAppBar(title: "Draggable borderless"),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,25 +44,37 @@ class DraggebleAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const platform_channel_draggable =
       MethodChannel('samples.go-flutter.dev/draggable');
 
-  final AppBar appBar;
+  AppBar appBar;
 
-  const DraggebleAppBar({Key key, this.appBar}) : super(key: key);
+  DraggebleAppBar({@required String title}) {
+    this.appBar = AppBar(
+      title: Text(title),
+      actions: <Widget>[
+        new IconButton(
+          icon: new Icon(Icons.close),
+          onPressed: () async =>
+              await platform_channel_draggable.invokeMethod("onClose"),
+        ),
+      ],
+      leading: new Container(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        child: appBar, onPanStart: onPanStart, onPanEnd: onPanEnd);
+        child: appBar, onPanStart: onPanStart, onPanUpdate: onPanUpdate);
   }
 
   @override
   Size get preferredSize => new Size.fromHeight(kToolbarHeight);
 
+  void onPanUpdate(DragUpdateDetails details) async {
+    await platform_channel_draggable.invokeMethod('onPanUpdate');
+  }
+
   void onPanStart(DragStartDetails details) async {
     await platform_channel_draggable.invokeMethod('onPanStart',
         {"dx": details.globalPosition.dx, "dy": details.globalPosition.dy});
-  }
-
-  void onPanEnd(DragEndDetails details) async {
-    await platform_channel_draggable.invokeMethod('onPanEnd');
   }
 }
