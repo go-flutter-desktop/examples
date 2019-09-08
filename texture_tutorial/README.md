@@ -1,6 +1,7 @@
 # texture_tutorial
 
-The texture plugin source code is stored in the same example: [./go-texture-example](./go-texture-example)
+The image texture plugin source code is stored in the same example: [./go-texture-example](./go-texture-example).  
+The video texture plugin source code is available as a go-flutter plugin [video_player](https://github.com/go-flutter-desktop/plugins/tree/master/video_player).  
 
 Multiples path are hard coded, run the app in the root of the flutter project!
 
