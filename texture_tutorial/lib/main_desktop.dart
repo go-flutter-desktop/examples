@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
@@ -34,8 +35,11 @@ class MyApp extends StatelessWidget {
                   Spacer(flex: 1),
                   ConstrainedBox(
                     constraints: BoxConstraints.tight(Size(640, 360)),
-                    child:
-                        Texture(textureId: 2), // hard-coded to 2, videoplayer
+                    // showcase the video_player plugin
+                    child: VideoPlayer(VideoPlayerController.network(
+                        'SampleVideo_1280x720_10mb.mp4')
+                      ..initialize()
+                      ..play()),
                   ),
                   Spacer(flex: 2),
                 ],

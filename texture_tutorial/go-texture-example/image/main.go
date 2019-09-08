@@ -41,6 +41,7 @@ func (p *ImagePlugin) InitPluginTexture(registry *flutter.TextureRegistry) error
 		if err != nil {
 			fmt.Printf("texture_tutorial: %v\n", err)
 		}
+		texture.FrameAvailable() // redraw
 	}()
 
 	return texture.Register(p.textureHanler)

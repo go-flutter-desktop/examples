@@ -5,11 +5,9 @@ go 1.12
 require (
 	github.com/go-flutter-desktop/go-flutter v0.29.2
 	github.com/go-flutter-desktop/plugins/go-texture-example/example_image v0.0.1
-	github.com/go-flutter-desktop/plugins/go-texture-example/example_video v0.0.1
+	github.com/go-flutter-desktop/plugins/video_player v0.0.2
 	github.com/pkg/errors v0.8.1
 )
-
-replace github.com/go-flutter-desktop/plugins/go-texture-example/example_video => ../go-texture-example/video
 
 replace github.com/go-flutter-desktop/plugins/go-texture-example/example_image => ../go-texture-example/image
 
