@@ -39,3 +39,12 @@ var options = []flutter.Option{
 
 If you get errors when only using the `example_image.ImagePlugin` plugin, please report an issue!  
 If you get errors when using both plugin, check if your system is compatible with the [video-to-goImage](https://github.com/3d0c/gmf/blob/f4b5acb7db5cbbda9a6209be1d0de5f552823f62/examples/video-to-goImage.go) gmf example.
+
+#### note
+User [@nzlov](https://github.com/nzlov) managed to build this example in `Parallels Desktop` by:  
+Using [`msys2`](https://www.msys2.org/)  
+And installing `pkg-config` using:
+```
+pacman -S  mingw-w64-x86_64-pkg-config 
+```
+[source](https://github.com/go-flutter-desktop/go-flutter/issues/248#issuecomment-529741140)
