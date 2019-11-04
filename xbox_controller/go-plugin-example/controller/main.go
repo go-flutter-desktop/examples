@@ -54,7 +54,7 @@ func (p *XBOXStream) OnListen(arguments interface{}, sink *plugin.EventSink) {
 					"axes":    axes,
 				}
 
-				// don't duplication succeding message, allow less serialisation.
+				// don't send duplicated succeding message, (reduces serialisation).
 				if !reflect.DeepEqual(lastJoystickInfo, joystickInfo) {
 					sink.Success(joystickInfo)
 					lastJoystickInfo = joystickInfo
