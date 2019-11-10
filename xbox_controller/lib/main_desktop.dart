@@ -9,6 +9,7 @@ import './game.dart';
 
 void main() async {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  WidgetsFlutterBinding.ensureInitialized();
   final Size size = await Flame.util.initialDimensions();
   final game = MyGame(size);
   runApp(game.widget);
