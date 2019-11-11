@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
@@ -31,29 +30,29 @@ class MyApp extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Spacer(flex: 2),
-                  Text('Video Player'),
-                  Spacer(flex: 1),
+                  Text('Gif Player (2sec gif)'),
+                  Spacer(flex: 2),
                   ConstrainedBox(
                     constraints: BoxConstraints.tight(Size(640, 360)),
-                    // showcase the video_player plugin
-                    child: VideoPlayer(VideoPlayerController.network(
-                        'SampleVideo_1280x720_10mb.mp4')
-                      ..initialize()
-                      ..play()),
+                    // hard-coded to 2, gif.
+                    // (Not the best practise, let go-flutter generate this ID
+                    // and send it back to the dart code using platform
+                    // messages)
+                    child: Texture(textureId: 2), 
                   ),
-                  Spacer(flex: 2),
+                  Spacer(flex: 3),
                 ],
               ),
               Column(
                 children: <Widget>[
                   Spacer(flex: 2),
-                  Text('Image Texture'),
-                  Spacer(flex: 1),
+                  Text('Image Texture (Cleared after 5s)'),
+                  Spacer(flex: 2),
                   ConstrainedBox(
                     constraints: BoxConstraints.tight(Size(330, 319)),
                     child: Texture(textureId: 1), // hard-coded to 1, image
                   ),
-                  Spacer(flex: 2),
+                  Spacer(flex: 3),
                 ],
               ),
             ],

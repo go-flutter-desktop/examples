@@ -26,12 +26,13 @@ func (p *ImagePlugin) InitPluginTexture(registry *flutter.TextureRegistry) error
 
 	texture := registry.NewTexture()
 
-	// for this exmaple I hard-coded a `textureId: 1` int the flutter Texture widget.
+	// for this exmaple I have hard-coded a `textureId: 1` in the flutter
+	// Texture widget.
 	texture.ID = 1
 	// You should never change this ID, `registry.NewTexture()` will keep track
 	// of the textureId counter for you.
 	// You should send the texture.ID number to dart using some sort of platform
-	// channel, you should use the go generated textureId in flutter.
+	// channel, and use the go generated textureId in flutter.
 
 	// after 5 seconds, remove the texture from the scene.
 	go func() {
@@ -53,23 +54,26 @@ func (p *ImagePlugin) textureHanler(width, height int) (bool, *flutter.PixelBuff
 	file := "./test.png"
 	imgFile, err := os.Open(file)
 	if err != nil {
-		fmt.Printf("texture %q not found on disk: %v\n", file, err)
+		fmt.Printf("image %q not found on disk: %v\n", file, err)
+		return false, nil
 	}
 
 	img, _, err := image.Decode(imgFile)
 	if err != nil {
 		fmt.Printf("error decoding file %s:%v\n", file, err)
+		return false, nil
 	}
 
 	rgba := image.NewRGBA(img.Bounds())
 	if rgba.Stride != rgba.Rect.Size().X*4 {
 		fmt.Printf("unsupported stride\n")
+		return false, nil
 	}
 
 	draw.Draw(rgba, rgba.Bounds(), img, image.Point{0, 0}, draw.Src)
 	return true, &flutter.PixelBuffer{
 		Pix:    rgba.Pix,
-		Width:  img.Bounds().Size().X,
-		Height: img.Bounds().Size().Y,
+		Width:  rgba.Bounds().Size().X,
+		Height: rgba.Bounds().Size().Y,
 	}
 }
