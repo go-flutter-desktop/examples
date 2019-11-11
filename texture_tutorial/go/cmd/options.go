@@ -7,7 +7,7 @@ import (
 )
 
 var options = []flutter.Option{
-	flutter.WindowInitialDimensions(1200, 500),
+	flutter.WindowInitialDimensions(1260, 580),
 	flutter.AddPlugin(&example_image.ImagePlugin{}),
 	flutter.AddPlugin(&example_gif.GifPlugin{}),
 }
