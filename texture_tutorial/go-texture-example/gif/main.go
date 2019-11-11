@@ -16,7 +16,7 @@ import (
 // GifPlugin is a texture plugin example
 type GifPlugin struct {
 	gif  *gif.GIF
-	rgba *image.RGBA // in-memory buffer for the image
+	rgba *image.RGBA // in-memory buffer for the next image to be displayed
 }
 
 var _ flutter.PluginTexture = &GifPlugin{} // compile-time type check
