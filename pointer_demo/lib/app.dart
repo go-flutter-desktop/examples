@@ -36,6 +36,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _exitCounter = 0;
   double x = 0.0;
   double y = 0.0;
+  String _mouseStatus = "hovering";
 
   void _incrementCounter(PointerEnterEvent details) {
     setState(() {
@@ -53,6 +54,31 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       x = details.position.dx;
       y = details.position.dy;
+      _mouseStatus = "hovering, button ${details.buttons.toString()}";
+    });
+  }
+
+  void _updateMove(PointerMoveEvent details) {
+    setState(() {
+      x = details.position.dx;
+      y = details.position.dy;
+      _mouseStatus = "dragging, button ${details.buttons.toString()}";
+    });
+  }
+
+  void _pointerDown(PointerDownEvent details) {
+    setState(() {
+      x = details.position.dx;
+      y = details.position.dy;
+      _mouseStatus = "down, button ${details.buttons.toString()}";
+    });
+  }
+
+  void _pointerUp(PointerUpEvent details) {
+    setState(() {
+      x = details.position.dx;
+      y = details.position.dy;
+      _mouseStatus = "up, button ${details.buttons.toString()}";
     });
   }
 
@@ -66,6 +92,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: ConstrainedBox(
           constraints: BoxConstraints.tight(Size(300.0, 200.0)),
           child: Listener(
+            onPointerDown: _pointerDown,
+            onPointerUp: _pointerUp,
+            onPointerMove: _updateMove,
             onPointerEnter: _incrementCounter,
             onPointerHover: _updateLocation,
             onPointerExit: _decrementCounter,
@@ -81,6 +110,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   ),
                   Text(
                     'The cursor is here: (${x.toStringAsFixed(2)}, ${y.toStringAsFixed(2)})',
+                  ),
+                  Divider(),
+                  Text(
+                    'The mouse is ${_mouseStatus}',
                   ),
                 ],
               ),
