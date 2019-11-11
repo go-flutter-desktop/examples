@@ -1,6 +1,6 @@
 # keyboard_event
 
-A new go-flutter-desktop example.
+A [`RawKeyEvent`](https://api.flutter.dev/flutter/services/RawKeyEvent-class.html) go-flutter-desktop example.
 
 
 ## Demo
