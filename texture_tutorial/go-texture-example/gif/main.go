@@ -22,7 +22,7 @@ type GifPlugin struct {
 var _ flutter.PluginTexture = &GifPlugin{} // compile-time type check
 
 // InitPlugin is used because PluginTexture must implement flutter.Plugin.
-// InitPlugin block the first frame, it's better to have the image decoded
+// InitPlugin delays the first frame, it's better to have images decoded
 // on demand in a HandleFunc (non-bloking).
 func (p *GifPlugin) InitPlugin(messenger plugin.BinaryMessenger) error {
 
