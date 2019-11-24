@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:math';
 
@@ -8,6 +9,7 @@ const platform_channel_battery =
     const MethodChannel('samples.flutter.dev/battery');
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // Example from the WIKI
   //
   test('Test Battery Plugin result', () async {
