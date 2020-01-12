@@ -6,7 +6,7 @@ require (
 	github.com/go-flutter-desktop/go-flutter v0.34.1
 	github.com/go-flutter-desktop/plugins/go-texture-example/example_gif v0.0.0-00010101000000-000000000000
 	github.com/go-flutter-desktop/plugins/go-texture-example/example_image v0.0.1
-	github.com/pkg/errors v0.8.1
+	github.com/pkg/errors v0.9.0
 )
 
 replace github.com/go-flutter-desktop/plugins/go-texture-example/example_image => ../go-texture-example/image
