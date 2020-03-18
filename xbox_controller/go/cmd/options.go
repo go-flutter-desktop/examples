@@ -6,7 +6,7 @@ import (
 )
 
 var options = []flutter.Option{
-	flutter.WindowInitialDimensions(800, 500),
-	flutter.WindowDimensionLimits(800, 500, 800, 500),
+	flutter.WindowInitialDimensions(1600, 1100),
+	flutter.WindowDimensionLimits(1600, 1100, 1600, 1100),
 	flutter.AddPlugin(&controller.XBOXStream{}),
 }

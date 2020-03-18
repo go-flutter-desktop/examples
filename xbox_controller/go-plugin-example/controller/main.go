@@ -6,7 +6,7 @@ import (
 
 	flutter "github.com/go-flutter-desktop/go-flutter"
 	"github.com/go-flutter-desktop/go-flutter/plugin"
-	"github.com/go-gl/glfw/v3.2/glfw"
+	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
 // XBOXStream demonstrates how to use the EventChannel.
@@ -24,6 +24,8 @@ func (p *XBOXStream) InitPlugin(messenger plugin.BinaryMessenger) error {
 }
 
 func (p *XBOXStream) OnListen(arguments interface{}, sink *plugin.EventSink) {
+	joy := glfw.Joystick1
+
 	var lastJoystickInfo map[interface{}]interface{}
 	for {
 		select {
@@ -32,24 +34,23 @@ func (p *XBOXStream) OnListen(arguments interface{}, sink *plugin.EventSink) {
 		default:
 
 			var present bool
-			joy := glfw.Joystick1
-			if glfw.JoystickPresent(joy) {
+			if joy.Present() {
 				present = true
 
-				glfwButtons := glfw.GetJoystickButtons(joy)
+				glfwButtons := joy.GetButtons()
 				buttons := make([]interface{}, len(glfwButtons))
 				for i, v := range glfwButtons {
 					buttons[i] = v == 1
 				}
 
-				glfwAxes := glfw.GetJoystickAxes(joy)
+				glfwAxes := joy.GetAxes()
 				axes := make([]interface{}, len(glfwAxes))
 				for i, v := range glfwAxes {
 					axes[i] = float64(v)
 				}
 
 				joystickInfo := map[interface{}]interface{}{
-					"name":    glfw.GetJoystickName(joy),
+					"name":    joy.GetName(),
 					"buttons": buttons,
 					"axes":    axes,
 				}

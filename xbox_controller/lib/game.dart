@@ -47,6 +47,8 @@ class MyGame extends BaseGame {
         name: ctrl["name"],
         stickAxes: ctrl["axes"].cast<double>(),
         buttons: ctrl["buttons"].cast<bool>());
+
+    print(ctrl);
   }
 
   void _start() {
@@ -129,15 +131,15 @@ class Controller {
   }
 
   Coordinates offsetLeftStick() {
-    return Coordinates(x: (this.stickAxes[2] * 27), y: (stickAxes[3] * 27));
+    return Coordinates(x: (this.stickAxes[3] * 27), y: (stickAxes[4] * 27));
   }
 
   double rt() {
-    return (this.stickAxes[4] + 1) * -2;
+    return (this.stickAxes[5] + 1) * -2;
   }
 
   double lt() {
-    return (this.stickAxes[5] + 1) * -2;
+    return (this.stickAxes[2] + 1) * -2;
   }
 
   List<Button> pressedButtons() {
@@ -151,13 +153,13 @@ class Controller {
     if (this.buttons[3])
       list.add(Button("Y", Coordinates(x: 526, y: 140), Color(0xFFCFAF2B)));
 
-    if (this.stickAxes[6] == 1)
+    if (this.buttons[12])
       list.add(Button(">", Coordinates(x: 384, y: 257), Colors.white70));
-    if (this.stickAxes[6] == -1)
+    if (this.buttons[14])
       list.add(Button("<", Coordinates(x: 292, y: 257), Colors.white70));
-    if (this.stickAxes[7] == -1)
+    if (this.buttons[11])
       list.add(Button("^", Coordinates(x: 339, y: 210), Colors.white70));
-    if (this.stickAxes[7] == 1)
+    if (this.buttons[13])
       list.add(Button("v", Coordinates(x: 339, y: 307), Colors.white70));
 
     if (this.buttons[5])
