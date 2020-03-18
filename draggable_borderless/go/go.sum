@@ -1,8 +1,6 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-flutter-desktop/go-flutter v0.35.3 h1:lGGjnq+iWnOqe34Os4JNaVqIA+RpwxWviAIoJV5bJNw=
-github.com/go-flutter-desktop/go-flutter v0.35.3/go.mod h1:wGLquwJpFlT0YM4/k7zorWHTiqNxzLbKjS3ujb5G/nY=
 github.com/go-flutter-desktop/go-flutter v0.36.0 h1:n/SBmYrZaLMfVev1ut97GCRlYoMeGThBIPtwqF7GS04=
 github.com/go-flutter-desktop/go-flutter v0.36.0/go.mod h1:8tjt3yZ3lTNLqgzWeH90f1uhCR9BL68LFoiy/n0aw/w=
 github.com/go-gl/gl v0.0.0-20190320180904-bf2b1f2f34d7 h1:SCYMcCJ89LjRGwEa0tRluNRiMjZHalQZrVrvTbPh+qw=
