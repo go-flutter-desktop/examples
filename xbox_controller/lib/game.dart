@@ -47,8 +47,6 @@ class MyGame extends BaseGame {
         name: ctrl["name"],
         stickAxes: ctrl["axes"].cast<double>(),
         buttons: ctrl["buttons"].cast<bool>());
-
-    print(ctrl);
   }
 
   void _start() {
