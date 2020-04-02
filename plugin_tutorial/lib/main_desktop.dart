@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:math';
+import 'dart:async' as async;
 
 // The client and host sides of a channel are connected through
 // a channel name passed in the channel constructor.
@@ -38,13 +39,29 @@ void main() async {
         {"instanceid": 1056, "pcbackup": "coucou", "brbackup": "coucou2"},
         {"instanceid": 3322, "pcbackup": "finaly", "brbackup": "finaly2"}
       ]);
+    });
 
-      // golang can return the random methodName
-      final String methodName =
-          'test/' + new Random().nextInt(100000).toString();
-      final String resultPathPrefix =
-          await platform_complex_structure.invokeMethod(methodName);
-      expect(resultPathPrefix, methodName);
+    test('Test golang InvokeMethodWithReply', () async {
+      var method;
+      var arguments;
+      async.Completer completer = new async.Completer();
+
+      platform_complex_structure.setMethodCallHandler((MethodCall call) async {
+        method = call.method;
+        arguments = call.arguments;
+        completer.complete();
+        return "text_from_dart";
+      });
+
+      // Triggers the above setMethodCallHandler handler
+      var result = await platform_complex_structure.invokeMethod(
+          'mutualCall', 'hello_from_dart');
+      expect(result, "hello_from_go");
+
+      await completer.future;
+
+      expect(method, "InvokeMethodWithReply");
+      expect(arguments, "text_from_golang");
     });
 
     test('Custom errors', () async {
@@ -54,6 +71,15 @@ void main() async {
         platform_complex_structure.invokeMethod('getError'),
         throwsA(matcher),
       );
+    });
+
+    test('Test golang CatchAllHandleFunc', () async {
+      // golang can return the random methodName
+      final String methodName =
+          'test/' + new Random().nextInt(100000).toString();
+      final String resultPathPrefix =
+          await platform_complex_structure.invokeMethod(methodName);
+      expect(resultPathPrefix, methodName);
     });
   });
 
