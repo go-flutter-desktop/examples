@@ -15,7 +15,6 @@ var options = []flutter.Option{
 // AppBarDraggable is a plugin that makes moving the bordreless window possible
 type AppBarDraggable struct {
 	window           *glfw.Window
-	windowDragActive chan bool
 	cursorPosY       int
 	cursorPosX       int
 }
@@ -26,7 +25,6 @@ var _ flutter.PluginGLFW = &AppBarDraggable{} // compile-time type check
 
 // InitPlugin creates a MethodChannel for "samples.go-flutter.dev/draggable"
 func (p *AppBarDraggable) InitPlugin(messenger plugin.BinaryMessenger) error {
-	p.windowDragActive = make(chan bool)
 	channel := plugin.NewMethodChannel(messenger, "samples.go-flutter.dev/draggable", plugin.StandardMethodCodec{})
 	channel.HandleFunc("onPanStart", p.onPanStart)
 	channel.HandleFuncSync("onPanUpdate", p.onPanUpdate) // MUST RUN ON THE MAIN THREAD (use of HandleFuncSync)
