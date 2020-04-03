@@ -84,7 +84,7 @@ class _KeyboardTestPageState extends State<KeyboardTestPage> {
     }
 
     _addMessage(
-        '${isKeyDown ? 'KeyDown' : 'KeyUp'}: $keyCode\n- Modifiers: ${event.data.modifiersPressed}\n- KeyLabel: ${event.data.logicalKey.keyLabel}\n- debugName: ${event.data.logicalKey.debugName}');
+        '${isKeyDown ? 'KeyDown' : 'KeyUp'}: $keyCode\n- Modifiers: ${event.data.modifiersPressed}\n- KeyLabel: ${event.data.keyLabel}\n- physicalKey: ${event.data.physicalKey}\n- character: ${event.character}');
   }
 
   void _addMessage(String message) {
