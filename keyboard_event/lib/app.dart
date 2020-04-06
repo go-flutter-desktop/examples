@@ -73,18 +73,8 @@ class _KeyboardTestPageState extends State<KeyboardTestPage> {
         throw new Exception('Unexpected runtimeType of RawKeyEvent');
     }
 
-    int keyCode;
-    switch (event.data.runtimeType) {
-      case RawKeyEventDataLinux:
-        final RawKeyEventDataLinux data = event.data;
-        keyCode = data.keyCode;
-        break;
-      default:
-        throw new Exception('Unsupported platform ${event.data.runtimeType}');
-    }
-
     _addMessage(
-        '${isKeyDown ? 'KeyDown' : 'KeyUp'}: $keyCode\n- Modifiers: ${event.data.modifiersPressed}\n- KeyLabel: ${event.data.keyLabel}\n- physicalKey: ${event.data.physicalKey}\n- character: ${event.character}');
+        '${event.data.runtimeType} - ${isKeyDown ? 'KeyDown' : 'KeyUp'}:\n- Modifiers: ${event.data.modifiersPressed}\n- KeyLabel: ${event.data.keyLabel}\n- physicalKey: ${event.data.physicalKey}\n- logicalkey: ${event.data.logicalKey}\n- character: ${event.character}');
   }
 
   void _addMessage(String message) {
