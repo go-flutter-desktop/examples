@@ -2,4 +2,4 @@ module github.com/go-flutter-desktop/plugins/go-texture-example/example_gif
 
 go 1.12
 
-require github.com/go-flutter-desktop/go-flutter v0.37.0
+require github.com/go-flutter-desktop/go-flutter v0.38.0
