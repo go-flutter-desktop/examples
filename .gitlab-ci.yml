@@ -1,0 +1,58 @@
+stages:
+  - build
+
+# .hoverBuildPackaged is a template job that we re-use for a number of concrete
+# build jobs. This allows us to have a single job definition that is re-used for
+# all the separate targets.
+.hoverBuildPackaged:
+  stage: build
+  image: goflutter/hover:v0.40.0
+  cache:
+    key: one-key-4-all
+    paths:
+      - /root/.pub-cache
+      - /root/.cache/go-build
+  script:
+    - declare -x VERSION_NAME=$(git describe --tags)
+    - cd stocks && hover build ${PACKAGING_TYPE} --version-number ${VERSION_NAME}
+  artifacts:
+    paths:
+      - stocks/go/build/outputs/${PACKAGING_TYPE}
+    expire_in: 20 weeks
+
+## Build
+
+# build:darwin-dmg:
+#   variables:
+#     PACKAGING_TYPE: darwin-dmg
+#   extends: .hoverBuildPackaged
+
+# build:darwin-pkg:
+#   variables:
+#     PACKAGING_TYPE: darwin-pkg
+#   extends: .hoverBuildPackaged
+
+# build:linux-appimage:
+#   variables:
+#     PACKAGING_TYPE: linux-appimage
+#   extends: .hoverBuildPackaged
+
+build:linux-deb:
+  variables:
+    PACKAGING_TYPE: linux-deb
+  extends: .hoverBuildPackaged
+
+# build:linux-rpm:
+#   variables:
+#     PACKAGING_TYPE: linux-rpm
+#   extends: .hoverBuildPackaged
+
+# build:linux-snap:
+#   variables:
+#     PACKAGING_TYPE: linux-snap
+#   extends: .hoverBuildPackaged
+
+build:windows-msi:
+  variables:
+    PACKAGING_TYPE: windows-msi
+  extends: .hoverBuildPackaged
