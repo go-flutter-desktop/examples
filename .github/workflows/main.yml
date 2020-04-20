@@ -1,0 +1,27 @@
+name: Github Actions
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: goflutter/hover:v0.41.0
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, then fetch all tags.
+      - uses: actions/checkout@v2
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+      # TODO: extract this action just like the template of gitlab-ci to a
+      # Github Action
+      # https://help.github.com/en/actions/building-actions/creating-a-docker-container-action
+      - name: Run `hover build`
+        run: |
+          cd $GITHUB_WORKSPACE
+          export VERSION_NAME=$(git describe --tags)
+          cd stocks && hover build linux-deb --version-number ${GITHUB_REF}
