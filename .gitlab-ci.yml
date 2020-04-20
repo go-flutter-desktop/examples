@@ -42,10 +42,10 @@ build:linux-deb:
     PACKAGING_TYPE: linux-deb
   extends: .hoverBuildPackaged
 
-# build:linux-rpm:
-#   variables:
-#     PACKAGING_TYPE: linux-rpm
-#   extends: .hoverBuildPackaged
+build:linux-rpm:
+  variables:
+    PACKAGING_TYPE: linux-rpm
+  extends: .hoverBuildPackaged
 
 # build:linux-snap:
 #   variables:
