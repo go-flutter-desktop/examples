@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Categories=
-Name=stocks
-Icon=/usr/lib/stocks/assets/icon.png
-Exec=/usr/lib/stocks/stocks
