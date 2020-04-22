@@ -6,14 +6,14 @@ stages:
 # all the separate targets.
 .hoverBuildPackaged:
   stage: build
-  image: goflutter/hover:v0.40.4
+  image: goflutter/hover:v0.41.3
   cache:
     key: one-key-4-all
     paths:
       - /root/.pub-cache
       - /root/.cache/go-build
   script:
-    - declare -x VERSION_NAME=$(git describe --tags)
+    - declare -x VERSION_NAME=$(git describe --tags | sed 's/-//g')
     - cd stocks && hover build ${PACKAGING_TYPE} --version-number ${VERSION_NAME}
   artifacts:
     paths:
@@ -32,25 +32,32 @@ build:darwin-pkg:
     PACKAGING_TYPE: darwin-pkg
   extends: .hoverBuildPackaged
 
-# build:linux-appimage:
-#   variables:
-#     PACKAGING_TYPE: linux-appimage
-#   extends: .hoverBuildPackaged
+build:linux-appimage:
+  variables:
+    PACKAGING_TYPE: linux-appimage
+  extends: .hoverBuildPackaged
 
 build:linux-deb:
   variables:
     PACKAGING_TYPE: linux-deb
   extends: .hoverBuildPackaged
 
-# build:linux-rpm:
-#   variables:
-#     PACKAGING_TYPE: linux-rpm
-#   extends: .hoverBuildPackaged
+build:linux-rpm:
+  variables:
+    PACKAGING_TYPE: linux-rpm
+  extends: .hoverBuildPackaged
 
-# build:linux-snap:
-#   variables:
-#     PACKAGING_TYPE: linux-snap
-#   extends: .hoverBuildPackaged
+# Doesn't work in docker yet
+#build:linux-pkg:
+#  variables:
+#    PACKAGING_TYPE: linux-pkg
+#  extends: .hoverBuildPackaged
+
+# Build works, but the output file is broken
+#build:linux-snap:
+#  variables:
+#    PACKAGING_TYPE: linux-snap
+#  extends: .hoverBuildPackaged
 
 build:windows-msi:
   variables:
