@@ -9,19 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        format: [darwin-dmg, darwin-pkg, linux-appimage, linux-deb, linux-pkg, linux-rpm, windows-msi]
     container:
-      image: goflutter/hover:v0.41.0
+      image: goflutter/hover:v0.41.3
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, then fetch all tags.
       - uses: actions/checkout@v2
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - run: git fetch --prune --unshallow
 
-      # TODO: extract this action just like the template of gitlab-ci to a
-      # Github Action
-      # https://help.github.com/en/actions/building-actions/creating-a-docker-container-action
-      - name: Run `hover build`
+      - name: Run `hover build ${{ matrix.format }}`
         run: |
           cd $GITHUB_WORKSPACE
           export VERSION_NAME=$(git describe --tags)
-          cd stocks && hover build linux-deb --version-number ${GITHUB_REF}
+          cd stocks && hover build ${{ matrix.format }} --version-number ${GITHUB_REF}
