@@ -1,4 +1,4 @@
-module stocks/go
+module github.com/go-flutter-desktop/examples/stocks/go
 
 go 1.14
 
