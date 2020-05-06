@@ -17,8 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Run `hover build ${{ matrix.format }}`
         run: |
           cd $GITHUB_WORKSPACE
