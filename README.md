@@ -2,7 +2,7 @@
 
 This repository contains some example applications that can be built using [go-flutter](https://github.com/go-flutter-desktop/go-flutter).
 
-## Compiled example
+## Compiled example ![Github Actions](https://github.com/go-flutter-desktop/examples/workflows/Github%20Actions/badge.svg)  
 Pre-compiled examples are available as [Github action](https://github.com/go-flutter-desktop/examples/actions) artifacts.  
 
 ## Getting started
