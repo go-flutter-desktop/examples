@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        format: [darwin-dmg, darwin-pkg, linux-appimage, linux-rpm, windows-msi]
+        format: [darwin-dmg, darwin-pkg, linux-appimage, linux-deb, linux-rpm, windows-msi]
     container:
-      image: goflutter/hover:latest
+      image: goflutter/hover:v0.41.5
 
     steps:
       - uses: actions/checkout@v2
