@@ -13,7 +13,7 @@ jobs:
       matrix:
         format: [darwin-dmg, darwin-pkg, linux-appimage, linux-deb, linux-rpm, windows-msi]
     container:
-      image: goflutter/hover:v0.41.5
+      image: goflutter/hover:v0.42.0
 
     steps:
       - uses: actions/checkout@v2
