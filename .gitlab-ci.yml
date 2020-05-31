@@ -53,11 +53,10 @@ build:linux-rpm:
 #    PACKAGING_TYPE: linux-pkg
 #  extends: .hoverBuildPackaged
 
-# Build works, but the output file is broken
-#build:linux-snap:
-#  variables:
-#    PACKAGING_TYPE: linux-snap
-#  extends: .hoverBuildPackaged
+build:linux-snap:
+ variables:
+   PACKAGING_TYPE: linux-snap
+ extends: .hoverBuildPackaged
 
 build:windows-msi:
   variables:
