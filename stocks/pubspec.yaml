@@ -1,5 +1,5 @@
 name: stocks
-
+description: A simple stocks application
 
 environment:
   # The pub client defaults to an <2.0.0 sdk constraint which we need to explicitly overwrite.
