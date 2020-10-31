@@ -13,7 +13,7 @@ jobs:
       matrix:
         format: [darwin-dmg, darwin-pkg, linux-appimage, linux-deb, linux-rpm, linux-snap, windows-msi]
     container:
-      image: goflutter/hover:v0.44.0
+      image: goflutter/hover:v0.45.0
 
     steps:
       - name: Update flutter
