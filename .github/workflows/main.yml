@@ -35,4 +35,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.format }}
-          path: stocks/go/build/outputs/${{ matrix.format }}/*
+          path: stocks/go/build/outputs/${{ matrix.format }}-debug_unopt/*
