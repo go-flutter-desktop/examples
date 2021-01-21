@@ -31,7 +31,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           export VERSION_NAME=$(git describe --tags | sed 's/-//g')
           cd stocks && hover build ${{ matrix.format }} --version-number ${VERSION_NAME} --debug
-          ls -lahR
+          ls -lah ./go/build/outputs/${{ matrix.format }}-debug_unopt/*
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.format }}
