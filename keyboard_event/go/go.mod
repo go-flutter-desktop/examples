@@ -1,6 +1,6 @@
-module github.com/go-flutter-desktop/examples/pointer_demo/desktop
+module keyboard_event/go
 
-go 1.12
+go 1.15
 
 require (
 	github.com/go-flutter-desktop/go-flutter v0.42.0

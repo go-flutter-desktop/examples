@@ -1,11 +1,11 @@
-module github.com/go-flutter-desktop/examples/plugin_tutorial/desktop
+module plugin_tutorial/go
 
-go 1.12
+go 1.15
 
 require (
 	github.com/go-flutter-desktop/go-flutter v0.42.0
-	github.com/go-flutter-desktop/plugins/go-plugin-example/battery v0.0.1
-	github.com/go-flutter-desktop/plugins/go-plugin-example/complex v0.0.1
+	github.com/go-flutter-desktop/plugins/go-plugin-example/battery v0.0.0-00010101000000-000000000000
+	github.com/go-flutter-desktop/plugins/go-plugin-example/complex v0.0.0-00010101000000-000000000000
 	github.com/pkg/errors v0.9.1
 )
 

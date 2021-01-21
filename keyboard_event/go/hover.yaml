@@ -1,6 +1,6 @@
-#application-name: "text_demo" # Uncomment to modify this value.
-#executable-name: "text_demo" # Uncomment to modify this value. Only lowercase a-z, numbers, underscores and no spaces
-#package-name: "textdemo" # Uncomment to modify this value. Only lowercase a-z, numbers and no underscores or spaces
+#application-name: "keyboard_event" # Uncomment to modify this value.
+#executable-name: "keyboard_event" # Uncomment to modify this value. Only lowercase a-z, numbers, underscores and no spaces
+#package-name: "keyboardevent" # Uncomment to modify this value. Only lowercase a-z, numbers and no underscores or spaces
 license: "" # MANDATORY: Fill in your SPDX license name: https://spdx.org/licenses
 target: lib/main_desktop.dart
 # opengl: "none" # Uncomment this line if you have trouble with your OpenGL driver (https://github.com/go-flutter-desktop/go-flutter/issues/272)
