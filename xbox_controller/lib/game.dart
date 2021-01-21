@@ -1,5 +1,5 @@
 import 'package:flame/game.dart';
-import 'package:flame/svg.dart';
+import 'package:flame_svg/flame_svg.dart';
 import 'package:flame/position.dart';
 import 'package:flame/text_config.dart';
 import 'package:flutter/material.dart';
