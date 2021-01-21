@@ -47,16 +47,15 @@ build:linux-rpm:
     PACKAGING_TYPE: linux-rpm
   extends: .hoverBuildPackaged
 
-# Doesn't work in docker yet
-#build:linux-pkg:
-#  variables:
-#    PACKAGING_TYPE: linux-pkg
-#  extends: .hoverBuildPackaged
+build:linux-pkg:
+  variables:
+    PACKAGING_TYPE: linux-pkg
+  extends: .hoverBuildPackaged
 
 build:linux-snap:
- variables:
-   PACKAGING_TYPE: linux-snap
- extends: .hoverBuildPackaged
+  variables:
+    PACKAGING_TYPE: linux-snap
+  extends: .hoverBuildPackaged
 
 build:windows-msi:
   variables:
