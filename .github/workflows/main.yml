@@ -29,7 +29,7 @@ jobs:
       - name: Run `hover build ${{ matrix.format }}`
         run: |
           cd $GITHUB_WORKSPACE
-          export VERSION_NAME=$(git describe --tags | sed 's/-//g')
+          export VERSION_NAME=$(git describe --tags $(git rev-list --tags --max-count=1))
           cd stocks && hover build ${{ matrix.format }} --version-number ${VERSION_NAME} --debug
           ls -lah ./go/build/outputs/${{ matrix.format }}-debug_unopt/*
       - uses: actions/upload-artifact@v2
