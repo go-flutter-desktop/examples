@@ -10,10 +10,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: 0.16.1
-  intl_translation: 0.17.10
-  http: 0.12.2
-  isolate: 2.0.3
+  intl:
+  http:
 
 flutter:
   uses-material-design: true
@@ -33,5 +31,3 @@ flutter:
           weight: 700
         - asset: fonts/Roboto/Roboto-Black.ttf
           weight: 900
-
-# PUBSPEC CHECKSUM: 8e0d

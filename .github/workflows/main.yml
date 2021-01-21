@@ -10,10 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        format: [darwin-dmg, darwin-pkg, linux-appimage, linux-deb, linux-rpm, linux-snap, windows-msi]
+        format: [darwin-dmg, darwin-pkg, darwin, linux-appimage, linux-deb, linux-pkg, linux-rpm, linux-snap, linux, windows-msi, windows]
     container:
-      image: goflutter/hover:v0.45.0
+      image: goflutter/hover:v0.46.1
 
     steps:
       - name: Update flutter
@@ -30,8 +31,8 @@ jobs:
           cd $GITHUB_WORKSPACE
           export VERSION_NAME=$(git describe --tags | sed 's/-//g')
           cd stocks && hover build ${{ matrix.format }} --version-number ${VERSION_NAME} --debug
-          ls -lah ./go/build/outputs/${{ matrix.format }}/*
+          ls -lah ./go/build/outputs/${{ matrix.format }}-debug_unopt/*
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.format }}
-          path: stocks/go/build/outputs/${{ matrix.format }}/*
+          path: stocks/go/build/outputs/${{ matrix.format }}-debug_unopt/*
