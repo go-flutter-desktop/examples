@@ -9,8 +9,8 @@ github.com/go-gl/gl v0.0.0-20190320180904-bf2b1f2f34d7 h1:SCYMcCJ89LjRGwEa0tRluN
 github.com/go-gl/gl v0.0.0-20190320180904-bf2b1f2f34d7/go.mod h1:482civXOzJJCPzJ4ZOX/pwvXBWSnzD4OKMdH4ClKGbk=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20201108214237-06ea97f0c265 h1:BcbKYUZo/TKPsiSh7LymK3p+TNAJJW3OfGO/21sBbiA=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20201108214237-06ea97f0c265/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210311203641-62640a716d48 h1:QrUfZrT8n72FUuiABt4tbu8PwDnOPAbnj3Mql1UhdRI=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210311203641-62640a716d48/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210410170116-ea3d685f79fb h1:T6gaWBvRzJjuOrdCtg8fXXjKai2xSDqWTcKFUPuw8Tw=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210410170116-ea3d685f79fb/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGaHF6qqu48+N2wcFQ5qg5FXgOdqsJ5d8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
