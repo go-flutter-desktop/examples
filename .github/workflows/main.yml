@@ -1,6 +1,8 @@
 name: Github Actions
 
 on:
+  schedule:
+    - cron: "0 0 * * 1"
   push:
     branches: [master]
   pull_request:
@@ -14,7 +16,7 @@ jobs:
       matrix:
         format: [darwin-dmg, darwin-pkg, darwin, linux-appimage, linux-deb, linux-pkg, linux-rpm, linux-snap, linux, windows-msi, windows]
     container:
-      image: goflutter/hover:v0.46.2
+      image: goflutter/hover:v0.46.4
 
     steps:
       - name: Update flutter
