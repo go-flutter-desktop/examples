@@ -21,7 +21,6 @@ class _StockSymbolView extends StatelessWidget {
     if (stock.percentChange > 0)
       changeInPrice = '+' + changeInPrice;
 
-    final TextStyle headings = Theme.of(context).textTheme.body2;
     return new Container(
       padding: const EdgeInsets.all(20.0),
       child: new Column(
@@ -30,18 +29,17 @@ class _StockSymbolView extends StatelessWidget {
             children: <Widget>[
               new Text(
                 '${stock.symbol}',
-                style: Theme.of(context).textTheme.display2
               ),
               arrow,
             ],
             mainAxisAlignment: MainAxisAlignment.spaceBetween
           ),
-          new Text('Last Sale', style: headings),
+          new Text('Last Sale'),
           new Text('$lastSale ($changeInPrice)'),
           new Container(
             height: 8.0
           ),
-          new Text('Market Cap', style: headings),
+          new Text('Market Cap'),
           new Text('${stock.marketCap}'),
           new Container(
             height: 8.0
