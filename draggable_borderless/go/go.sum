@@ -3,8 +3,8 @@ github.com/Xuanwo/go-locale v1.1.0/go.mod h1:UKrHoZB3FPIk9wIG2/tVSobnHgNnceGSH3Y
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-flutter-desktop/go-flutter v0.52.1 h1:EiV4fpXZAACs+s5JUZ/yi1U/tGVBdpr9j+LCnyZE+NA=
-github.com/go-flutter-desktop/go-flutter v0.52.1/go.mod h1:8lIXoHEAZl01qK7pKwUwf/dzF2mD0JRoaxkGoYu32k8=
+github.com/go-flutter-desktop/go-flutter v0.52.2 h1:08LdijXBSiqUcSzofrytBPpItF+zBgJ7s0sDixFhbAU=
+github.com/go-flutter-desktop/go-flutter v0.52.2/go.mod h1:8lIXoHEAZl01qK7pKwUwf/dzF2mD0JRoaxkGoYu32k8=
 github.com/go-gl/gl v0.0.0-20211210172815-726fda9656d6 h1:zDw5v7qm4yH7N8C8uWd+8Ii9rROdgWxQuGoJ9WDXxfk=
 github.com/go-gl/gl v0.0.0-20211210172815-726fda9656d6/go.mod h1:9YTyiznxEY1fVinfM7RvRcjRHbw2xLBJ3AAGIT0I4Nw=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220712193148-63cf1f4ef61f h1:w3h343WgVLKLITcSpwecCDcq0FO8pAv6A/UG86hhFtY=

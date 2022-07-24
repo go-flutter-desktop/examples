@@ -5,8 +5,9 @@ github.com/adrg/xdg v0.4.0/go.mod h1:N6ag73EX4wyxeaoeHctc1mas01KZgsj5tYiAIwqJE/E
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-flutter-desktop/go-flutter v0.52.1 h1:EiV4fpXZAACs+s5JUZ/yi1U/tGVBdpr9j+LCnyZE+NA=
 github.com/go-flutter-desktop/go-flutter v0.52.1/go.mod h1:8lIXoHEAZl01qK7pKwUwf/dzF2mD0JRoaxkGoYu32k8=
+github.com/go-flutter-desktop/go-flutter v0.52.2 h1:08LdijXBSiqUcSzofrytBPpItF+zBgJ7s0sDixFhbAU=
+github.com/go-flutter-desktop/go-flutter v0.52.2/go.mod h1:8lIXoHEAZl01qK7pKwUwf/dzF2mD0JRoaxkGoYu32k8=
 github.com/go-flutter-desktop/plugins/path_provider v0.5.0 h1:5Rcq05GUsi8HssKQ6S7wPzLzRg455UymCPRMve0uz7s=
 github.com/go-flutter-desktop/plugins/path_provider v0.5.0/go.mod h1:x1kDFgkxLKR0Xp51zJPX3G8+B0y87EBaZB3/WzKIilo=
 github.com/go-gl/gl v0.0.0-20211210172815-726fda9656d6 h1:zDw5v7qm4yH7N8C8uWd+8Ii9rROdgWxQuGoJ9WDXxfk=
