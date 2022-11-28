@@ -6,7 +6,7 @@ stages:
 # all the separate targets.
 .hoverBuildPackaged:
   stage: build
-  image: goflutter/hover:v0.46.5
+  image: goflutter/hover:v0.47.2
   cache:
     key: one-key-4-all
     paths:
