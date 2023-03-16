@@ -24,7 +24,7 @@ jobs:
           apt-get update
           apt-get install -y unzip
           flutter upgrade
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
