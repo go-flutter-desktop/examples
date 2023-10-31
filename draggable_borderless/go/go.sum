@@ -8,8 +8,8 @@ github.com/go-flutter-desktop/go-flutter v0.52.2/go.mod h1:8lIXoHEAZl01qK7pKwUwf
 github.com/go-gl/gl v0.0.0-20211210172815-726fda9656d6 h1:zDw5v7qm4yH7N8C8uWd+8Ii9rROdgWxQuGoJ9WDXxfk=
 github.com/go-gl/gl v0.0.0-20211210172815-726fda9656d6/go.mod h1:9YTyiznxEY1fVinfM7RvRcjRHbw2xLBJ3AAGIT0I4Nw=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220712193148-63cf1f4ef61f/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b h1:GgabKamyOYguHqHjSkDACcgoPIz3w0Dis/zJ1wyHHHU=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231031140856-0d7f346fb12e h1:xUDASG4c03s1cokNNyg0H8YkYauoqbi6U2T+xmdHD50=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231031140856-0d7f346fb12e/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 h1:EGx4pi6eqNxGaHF6qqu48+N2wcFQ5qg5FXgOdqsJ5d8=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
