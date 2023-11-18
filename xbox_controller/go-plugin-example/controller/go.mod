@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/go-flutter-desktop/go-flutter v0.52.2
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231102141658-eca20e8abded
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231117230948-b8b00452e321
 )
 
 require (
