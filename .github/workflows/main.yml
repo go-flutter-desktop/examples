@@ -34,7 +34,7 @@ jobs:
           export VERSION_NAME=$(git describe --tags $(git rev-list --tags --max-count=1))
           cd stocks && hover build ${{ matrix.format }} --version-number ${VERSION_NAME} --debug
           ls -lah ./go/build/outputs/${{ matrix.format }}-debug_unopt/*
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.format }}
           path: stocks/go/build/outputs/${{ matrix.format }}-debug_unopt/*
